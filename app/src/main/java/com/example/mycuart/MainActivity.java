@@ -27,7 +27,7 @@ public class MainActivity {
     }
 
     // JNI
-    private native static FileDescriptor open(String path, int baudrate, int flags);
+    public native static FileDescriptor open(String path, int baudrate, int flags);
 
     public native void close();
 
