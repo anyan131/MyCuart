@@ -23,7 +23,7 @@ public class MainActivity {
 
     // Used to load the 'native-lib' library on application startup.
     static {
-        System.loadLibrary("serial_port");
+        System.loadLibrary("my_sugar");
     }
 
     // JNI
