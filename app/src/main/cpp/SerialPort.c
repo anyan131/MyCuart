@@ -22,6 +22,15 @@
 #include <string.h>
 #include <jni.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <android/log.h>
+#include <termios.h>
+
 #include "com_example_mycuart_MainActivity.h"
 
 #include "android/log.h"
@@ -73,7 +82,7 @@ static speed_t getBaudrate(jint baudrate)
  * Method:    open
  * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
  */
-JNIEXPORT jobject JNICALL Java_com_example_mycuart_MainActivity_open
+JNIEXPORT jobject JNICALL Java_com_example_mycuart_CPlusAng_open
   (JNIEnv *env, jclass thiz, jstring path, jint baudrate, jint flags)
 {
 	int fd;
@@ -149,7 +158,7 @@ JNIEXPORT jobject JNICALL Java_com_example_mycuart_MainActivity_open
  * Method:    close
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_example_mycuart_MainActivity_close
+JNIEXPORT void JNICALL Java_com_example_mycuart_CPlusAng_close
   (JNIEnv *env, jobject thiz)
 {
 	jclass SerialPortClass = (*env)->GetObjectClass(env, thiz);
@@ -165,3 +174,12 @@ JNIEXPORT void JNICALL Java_com_example_mycuart_MainActivity_close
 	close(descriptor);
 }
 
+JNIEXPORT void JNICALL
+Java_com_example_mycuart_CPlusAng_stringFromJNI(JNIEnv *env, jobject thiz, jint angle, jint flag) {
+	int fd;
+	fd = open("/dev/myGPIO", O_RDWR | O_NOCTTY | O_NONBLOCK);
+	if(fd < 0)
+		printf("Can't open /dev/leds!\n");
+	ioctl(fd,angle,flag);
+	close(fd);
+}

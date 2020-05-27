@@ -1,22 +1,14 @@
 package com.example.mycuart;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
-import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MainActivity {
+public class CPlusAng {
 
-    private final String TAG = MainActivity.class.getSimpleName();
+    private final String TAG = CPlusAng.class.getSimpleName();
     private FileDescriptor mFd;
     private FileInputStream mFileInputStream;
     private FileOutputStream mFileOutputStream;
@@ -28,6 +20,8 @@ public class MainActivity {
 
     // JNI
     public native static FileDescriptor open(String path, int baudrate, int flags);
+
+    public native void stringFromJNI(int Angle,int flag);
 
     public native void close();
 

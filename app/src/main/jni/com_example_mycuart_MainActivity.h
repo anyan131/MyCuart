@@ -12,7 +12,7 @@ extern "C" {
  * Method:    open
  * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
  */
-JNIEXPORT jobject JNICALL Java_com_example_mycuart_MainActivity_open
+JNIEXPORT jobject JNICALL Java_com_example_mycuart_CPlusAng_open
   (JNIEnv *, jclass, jstring, jint, jint);
 
 /*
